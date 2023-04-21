@@ -19,23 +19,6 @@ let link ((Node (k1, c1, r1)) as t1) ((Node (k2, c2, r2)) as t2) =
   else if k1 < k2 then Node (k1, t2::c1, r1+1)
   else Node (k2, t1::c2, r2+1)
 
-let link_pair l =  
-  let rec aux acc = function
-    | [] -> acc
-    | _::[] -> failwith "the number of elements must be 2^r"
-    | t1::t2::tl -> aux (link t1 t2 :: acc) tl
-  in
-  aux [] l
-
-let to_binomial_tree l =  
-  let singletons = List.map singleton_tree l in
-  let rec aux = function
-    | [] -> failwith "Empty list"
-    | t::[] -> t
-    | l -> aux (link_pair l)
-  in
-  aux singletons
-  
 let add_heap k h =  
   let rec aux acc (Node (_, _, r1) as bt1) = function
     | [] -> List.rev (bt1::acc)
