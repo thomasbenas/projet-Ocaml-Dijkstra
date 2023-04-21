@@ -9,7 +9,7 @@ let print_result pred dist start =
     print_string (String.concat " -> " (List.map string_of_int path))
   in
   Hashtbl.iter (fun dest dist ->
-    Printf.printf "Shortest distance from %d to %d: %d\n"
+    Printf.printf "Plus courte distance depuis %d vers %d: %d\n"
       start dest dist;
     print_newline ()
   ) dist;;
