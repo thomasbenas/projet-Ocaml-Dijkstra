@@ -24,4 +24,3 @@ let dijkstra (graph : graph) (source : node) : int array =
     end
   in
   loop ()
-

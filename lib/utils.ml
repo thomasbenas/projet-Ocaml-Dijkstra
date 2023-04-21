@@ -1,5 +1,4 @@
-
-let print_result pred dist start =
+let print_result pred dist start execution_time =
   let _print_path dest =
     let rec build_path dest path =
       if dest = start then start :: path
@@ -12,7 +11,9 @@ let print_result pred dist start =
     Printf.printf "Plus courte distance depuis %d vers %d: %d\n"
       start dest dist;
     print_newline ()
-  ) dist;;
+  ) dist;
+  Printf.printf "Temps d'exécution: %f secondes\n" execution_time;; (* Add print for execution time *)
+
 
 
 let generate_graph n =
@@ -34,4 +35,5 @@ let generate_graph n =
           generate_edges_helper (i+1) ((dest, weight)::acc) (* On continue la récursion pour générer la prochaine arête *)
     in generate_edges_helper 0 [] (* On lance la génération d'arêtes avec une liste vide en tant qu'accumulateur *)
   in generate_helper 0 [] (* On lance la génération du tableau avec une liste vide en tant qu'accumulateur *)
+
 

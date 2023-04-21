@@ -1,7 +1,8 @@
 open Heap_binary
 
 let dijkstra graph start =
-  let infinity = max_int in   (* Définition de l'infini *)
+  let start_time = Sys.time () in   (* Ajout du timestamp au début *)
+  let infinity = max_int in
   let dist = Hashtbl.create 10 in   (* Table de hachage pour stocker les distances *)
   let heap = ref empty_heap in   (* Tas binaire pour stocker les sommets à traiter *)
   let pred = Hashtbl.create 10 in   (* Table de hachage pour stocker les prédécesseurs *)
@@ -28,6 +29,6 @@ let dijkstra graph start =
   Hashtbl.add dist start 0;   (* Initialisation de la distance de départ *)
   add_node start 0;   (* Ajout du sommet de départ dans le tas *)
   process_next_node ();   (* Traitement des sommets suivants *)
-  pred, dist   (* On retourne les tables de hachage des prédécesseurs et des distances *)
-
-  
+  let end_time = Sys.time () in   (* Ajout du timestamp à la fin *)
+  let execution_time = end_time -. start_time in   (* Calcul de la différence pour obtenir le temps d'exécution *)
+  (pred, dist, execution_time)   (* Retourne les tables de hachage des prédécesseurs, des distances et le temps d'exécution *)
